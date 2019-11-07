@@ -1,0 +1,32 @@
+.loader {
+    z-index: 2000;
+  }
+  
+  .loader > p {
+    margin-top: 1%;
+  }
+  
+  :host {
+    z-index: 2000 !important;
+  }
+  
+  .all {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    opacity: 0.7;
+    z-index: 2000 !important;
+  }
+  
+  .loading {
+    width: 100%;
+    z-index: 1000;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

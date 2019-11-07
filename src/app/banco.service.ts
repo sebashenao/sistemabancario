@@ -14,6 +14,7 @@ import { map } from 'rxjs/operators';
 export class BancoService {
 
   private listUsuarios: any = []
+  textLoader: string = ''
 
   constructor(private http: HttpClient) { }
 
@@ -27,6 +28,14 @@ export class BancoService {
 
   setListUsuarios(listUsuarios: any[]) {
     this.listUsuarios = listUsuarios
+  }
+
+  setTextLoader(textLoader: string) {
+    this.textLoader = textLoader
+  }
+
+  getTextLoader() {
+    return this.textLoader
   }
 
   logueo(body) {

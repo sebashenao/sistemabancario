@@ -3,6 +3,7 @@ import { BancoService } from '../banco.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioInterface } from '../model/usuario';
 import { isNullOrUndefined } from 'util';
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-login',
@@ -17,20 +18,27 @@ export class LoginComponent implements OnInit {
   constructor(private bancoService: BancoService, private router: Router) { }
 
   ngOnInit() {
-
   }
 
   login() {
     if (!isNullOrUndefined(this.usuarioInterface.usuario) && !isNullOrUndefined(this.usuarioInterface.clave)) {
       this.mensajeServer = ''
+      this.bancoService.setTextLoader('Validando Datos...')
+      $('.loading').show()
       this.bancoService.logueo(this.usuarioInterface).subscribe(result => {
         let data: any
         data = result
         if (data.estado == 200) {
-          this.router.navigate(['/home'])
+          setTimeout(() => {
+            $('.loading').hide()
+            this.router.navigate(['/home'])
+          }, 1000);
         }
         else {
-          this.mensajeServer = data.mensaje
+          setTimeout(() => {
+            $('.loading').hide()
+            this.mensajeServer = data.mensaje
+          }, 1000);
         }
       })
     }
