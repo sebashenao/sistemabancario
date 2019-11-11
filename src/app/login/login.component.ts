@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (!isNullOrUndefined(this.usuarioInterface.usuario) && !isNullOrUndefined(this.usuarioInterface.clave)) {
+    if (!isNullOrUndefined(this.usuarioInterface.ced_usu) && !isNullOrUndefined(this.usuarioInterface.pas_usu)) {
       this.mensajeServer = ''
       this.bancoService.setTextLoader('Validando Datos...')
       $('.loading').show()

@@ -13,9 +13,9 @@
             </button>
         </div>
         <label>Usuario <strong class="obligatorio">*</strong></label>
-        <input type="text" [(ngModel)]="this.usuarioInterface.usuario" class="form-control" placeholder="Digite Usuario">
+        <input type="text" [(ngModel)]="this.usuarioInterface.ced_usu" class="form-control" placeholder="Digite Usuario">
         <label>Contraseña <strong class="obligatorio">*</strong></label>
-        <input type="password" [(ngModel)]="this.usuarioInterface.clave" class="form-control" placeholder="Digiste Contraseña">
+        <input type="password" [(ngModel)]="this.usuarioInterface.pas_usu" class="form-control" placeholder="Digiste Contraseña">
         <br>
         <button class="btn btn-outline-success btn-block" (click)="login()"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
         <button class="btn btn-outline-primary btn-block" data-toggle="modal"
@@ -37,14 +37,24 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-10 col-lg-10 col-xl-10">
+                        <label>Cedula Ciudadania <strong class="obligatorio">*</strong></label>
+                        <input type="text" [(ngModel)]="this.usuarioInterface.ced_usu" class="form-control" placeholder="Digite Cedula">
                         <label>Nombre Completo <strong class="obligatorio">*</strong></label>
-                        <input type="text" class="form-control" placeholder="Digite Nombre">
-                        <label>Usuario <strong class="obligatorio">*</strong></label>
-                        <input type="text" class="form-control" placeholder="Digite Usuario">
-                        <label>Edad <strong class="obligatorio">*</strong></label>
-                        <input type="text" class="form-control" placeholder="Digite Edad">
+                        <input type="text" [(ngModel)]="this.usuarioInterface.nom_usu" class="form-control" placeholder="Digite Nombre">
                         <label>Contraseña <strong class="obligatorio">*</strong></label>
-                        <input type="password" class="form-control" placeholder="Digite Contraseña">
+                        <input type="password" [(ngModel)]="this.usuarioInterface.pas_usu" class="form-control" placeholder="Digite Contraseña">
+                        <label>Direccion</label>
+                        <input type="text" [(ngModel)]="this.usuarioInterface.dir_usu" class="form-control" placeholder="Digite Direccion">
+                        <label>Departamento</label>
+                        <input type="text" [(ngModel)]="this.usuarioInterface.dep_usu" class="form-control" placeholder="Digite Direccion">
+                        <label>Ciudad</label>
+                        <input type="text" [(ngModel)]="this.usuarioInterface.ciu_usu" class="form-control" placeholder="Digite Direccion">
+                        <label>Fecha Nacimiento</label>
+                        <input type="date" [(ngModel)]="this.usuarioInterface.fec_nac_usu" class="form-control" placeholder="Digite Direccion">
+                        <label>Sucursal</label>
+                        <select class="form-control" [(ngModel)]="this.usuarioInterface.fec_nac_usu">
+                            <!-- <option *ngFor="let data of this.usuarioInterface.getSucursales()" value="data.id_suc"> {{data.mob_suc}} </option> -->
+                        </select>
                     </div>
                 </div>
             </div>
