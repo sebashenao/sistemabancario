@@ -1,5 +1,5 @@
 .loader {
-    z-index: 2000;
+    z-index: 9999 !important;
   }
   
   .loader > p {
@@ -7,7 +7,7 @@
   }
   
   :host {
-    z-index: 2000 !important;
+    z-index: 9999 !important;
   }
   
   .all {

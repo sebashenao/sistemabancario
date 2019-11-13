@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { BancoService } from '../banco.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { UsuarioInterface } from '../model/usuario';
-import { isNullOrUndefined } from 'util';
-import * as $ from "jquery";
+import { Component, OnInit } from '@angular/core'
+import { BancoService } from '../banco.service'
+import { Router, ActivatedRoute } from '@angular/router'
+import { UsuarioInterface } from '../model/usuario'
+import { isNullOrUndefined } from 'util'
+import * as $ from "jquery"
 
 @Component({
   selector: 'app-login',
@@ -15,9 +15,10 @@ export class LoginComponent implements OnInit {
   usuarioInterface: UsuarioInterface = {}
   mensajeServer: string = ''
 
-  constructor(private bancoService: BancoService, private router: Router) { }
+  constructor(public bancoService: BancoService, private router: Router) { }
 
   ngOnInit() {
+    this.bancoService.getSucursales()
   }
 
   login() {
@@ -31,14 +32,15 @@ export class LoginComponent implements OnInit {
         if (data.estado == 200) {
           setTimeout(() => {
             $('.loading').hide()
+            localStorage.setItem('Usuario', JSON.stringify(data.data))
             this.router.navigate(['/home'])
-          }, 1000);
+          }, 1000)
         }
         else {
           setTimeout(() => {
             $('.loading').hide()
             this.mensajeServer = data.mensaje
-          }, 1000);
+          }, 1000)
         }
       })
     }
