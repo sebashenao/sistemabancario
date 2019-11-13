@@ -1,0 +1,21 @@
+button {
+    width: 200px !important;
+    transition: margin-left 1s;
+}
+
+i {
+    float: right !important;
+}
+
+button:hover {
+    margin-left: 160px;
+}
+
+.content-menu {
+    margin-left: -167px;
+    width: 200px;
+    position: fixed;
+    top: 25px;
+    top: 83px;
+    z-index: 1000;
+}

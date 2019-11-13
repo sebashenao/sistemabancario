@@ -1,1 +1,49 @@
+<div *ngIf="this.rol != null" class="content-menu">
+    <button *ngIf="this.rol == 1" class="btn btn-outline-primary btn-block">Usuarios <i
+            class="fas fa-user-friends"></i></button>
+    <button *ngIf="this.rol == 1" class="btn btn-outline-secondary btn-block">Roles <i
+            class="fas fa-user-shield"></i></button>
+    <button *ngIf="this.rol == 1" class="btn btn-outline-success btn-block">Sucursales <i
+            class="fas fa-hotel"></i></button>
+    <button *ngIf="this.rol == 1" class="btn btn-outline-danger btn-block">Transacciones <i
+            class="fas fa-receipt"></i></button>
+    <button *ngIf="this.rol == 2" class="btn btn-outline-danger btn-block">Transacciones <i
+            class="fas fa-receipt"></i></button>
+    <button *ngIf="this.rol == 2" class="btn btn-outline-warning btn-block">Cuenta <i
+            class="fas fa-credit-card"></i></button>
+    <button *ngIf="this.rol == 1" class="btn btn-outline-info btn-block">Tipo Cuenta <i
+            class="fas fa-user-check"></i></button>
+    <button class="btn btn-outline-dark btn-block">Cerrar Sesion <i class="fas fa-power-off"></i></button>
+</div>
 
+<div class="row">
+    <div class="col-md-2 col-lg-3 col-xl-3"></div>
+    <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+        <br>
+        <h1 class="text-center">HOME</h1>
+        <hr>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dignissimos at laborum ab atque vitae
+            molestias amet non nisi officia minima placeat rerum, blanditiis perferendis. Fugiat minima quis sed
+            laudantium.
+            Qui nulla et mollitia tempore velit voluptates sint doloribus reiciendis impedit nihil, voluptas quaerat
+            libero at ad est vitae suscipit maxime ut sed architecto porro dicta quasi cum. Eligendi, nihil?
+            Nostrum est ex praesentium eius. Quaerat nostrum eius debitis molestiae dicta ex laboriosam, saepe error ea
+            voluptas atque est unde suscipit corporis dolore ipsum distinctio cum laborum? Inventore, fugit
+            necessitatibus.
+            Minus sint suscipit nostrum necessitatibus velit optio dolor. Illum quas deserunt similique illo soluta
+            velit quis sed officia non optio, iusto quaerat deleniti nulla harum repellat unde dolorum nemo. Eos!
+            Iure non, reprehenderit laborum dignissimos animi illo, accusantium qui similique numquam debitis dolore
+            quidem soluta asperiores, quia temporibus ipsum excepturi praesentium? Tenetur totam dolore voluptatum
+            aliquid mollitia quidem est deserunt.</p>
+        <br>
+        <br>
+        <p><strong>NOMBRE: </strong>{{ this.data.nombre }}</p>
+        <p><strong># DCOUMENTO: </strong>{{ this.data.documento }}</p>
+        <p><strong>DIRECCION: </strong>{{ this.data.direccion }}</p>
+        <p><strong>CIUDAD: </strong>{{ this.data.ciudad }}</p>
+        <p><strong>DEPARTAMENTO: </strong>{{ this.data.depto }}</p>
+        <p><strong>FECHA NACIMIENTO: </strong>{{ this.data.fecha_nacimiento | date: 'yyyy-MM-dd' }}</p>
+        <p><strong>SUCURSAL: </strong>{{ this.data.sucursal }}</p>
+    </div>
+    <div class="col-md-2 col-lg-3 col-xl-3"></div>
+</div>

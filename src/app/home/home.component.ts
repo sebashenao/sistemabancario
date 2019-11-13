@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from "jquery"
+import { BancoService } from '../banco.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  rol: number = null
+  data: any = []
+
+  constructor(public bancoService: BancoService, private route: Router) { }
 
   ngOnInit() {
+    if (this.bancoService.getUsuario() == undefined) {
+      this.route.navigate(['/'])
+    }
+    else {
+      this.data = this.bancoService.getUsuario()
+      this.rol = this.data.tip_usuario
+    }
   }
 
 }

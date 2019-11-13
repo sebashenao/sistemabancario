@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(public bancoService: BancoService, private router: Router) { }
 
   ngOnInit() {
+    $('.content-menu').hide()
     this.bancoService.getSucursales()
   }
 
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
         if (data.estado == 200) {
           setTimeout(() => {
             $('.loading').hide()
-            localStorage.setItem('Usuario', JSON.stringify(data.data))
+            this.bancoService.setUsuario(data.data)
             this.router.navigate(['/home'])
           }, 1000)
         }

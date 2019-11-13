@@ -16,6 +16,8 @@ export class BancoService {
   listSucursales: any = []
   messageForm: string = ''
   textLoader: string = ''
+  rol: string = ''
+  usuario: UsuarioInterface
 
   constructor(private http: HttpClient) { }
 
@@ -46,7 +48,15 @@ export class BancoService {
     return this.textLoader
   }
 
-  logueo(body) {
+  setUsuario(usuario: UsuarioInterface) {
+    this.usuario = usuario
+  }
+
+  getUsuario() {
+    return this.usuario
+  }
+
+  logueo(body: UsuarioInterface) {
     return this.http.post<UsuarioInterface>(`${environment.url}/login`, body)
       .pipe(map(data => data))
   }
