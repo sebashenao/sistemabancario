@@ -7,15 +7,16 @@ import { BancoService } from '../banco.service';
   styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent implements OnInit {
-
+  listUsuarios: any = []
   constructor(private bancoService: BancoService) { }
 
   ngOnInit() {
-    this.bancoService.getUsuarios().subscribe(result => {
-      let data: any
-      data = result
-      // this.bancoService.getUsuario().setListUsuarios(data)
-    })
+     this.bancoService.getUsuarios()
+    .subscribe((data => {
+      this.listUsuarios = data
+      console.log(this.listUsuarios);
+    }))
+    
   }
 
 }

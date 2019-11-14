@@ -1,5 +1,5 @@
 <div *ngIf="this.rol != null" class="content-menu">
-    <button *ngIf="this.rol == 1" class="btn btn-outline-primary btn-block">Usuarios <i
+    <button [routerLink]="['/usuarios']" *ngIf="this.rol == 1" class="btn btn-outline-primary btn-block">Usuarios <i
             class="fas fa-user-friends"></i></button>
     <button *ngIf="this.rol == 1" class="btn btn-outline-secondary btn-block">Roles <i
             class="fas fa-user-shield"></i></button>
@@ -13,7 +13,7 @@
             class="fas fa-credit-card"></i></button>
     <button *ngIf="this.rol == 1" class="btn btn-outline-info btn-block">Tipo Cuenta <i
             class="fas fa-user-check"></i></button>
-    <button class="btn btn-outline-dark btn-block">Cerrar Sesion <i class="fas fa-power-off"></i></button>
+    <button [routerLink]="['/']" class="btn btn-outline-dark btn-block">Cerrar Sesion <i class="fas fa-power-off"></i></button>
 </div>
 
 <div class="row">

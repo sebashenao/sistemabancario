@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+    <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
         <br>
         <h3 class="text-center">ADMIN USUARIOS</h3>
         <br>
@@ -9,21 +9,27 @@
         <table class="table">
             <thead>
                 <th class="text-center"># DOCUMENTO</th>
-                <th>NOMBRE</th>
-                <th>USUARIO</th>
-                <th>EDAD</th>
-                <th>FECHA CREACION</th>
-                <th>ESTADO</th>
+                <th class="text-center">NOMBRE</th>
+                <th class="text-center">CIUDAD</th>
+                <th class="text-center">DEPARTAMENTO</th>
+                <th class="text-center">DIRECCION</th>
+                <th class="text-center">SUCURSAL</th>
+                <th class="text-center">ROL</th>
+                <th class="text-center">FECHA NACIMIENTO</th>
+                <th class="text-center">ESTADO</th>
                 <th class="text-center">ACCIONES</th>
             </thead>
             <tbody>
-                <tr *ngFor="let data of this.bancoService.getUsuario().getListUsuarios()">
-                    <td class="text-center">{{ data.documento }}</td>
-                    <td>{{ data.nombre }}</td>
-                    <td>{{ data.usuario }}</td>
-                    <td>{{ data.edad }}</td>
-                    <td>{{ data.fecha_creacion }}</td>
-                    <td>{{ data.estado }}</td>
+                <tr *ngFor="let data of this.listUsuarios">
+                    <td class="text-center">{{ data.ced_usu }}</td>
+                    <td class="text-center">{{ data.nom_usu }}</td>
+                    <td class="text-center">{{ data.ciu_usu }}</td>
+                    <td class="text-center">{{ data.dep_usu }}</td>
+                    <td class="text-center">{{ data.dir_usu }}</td>
+                    <td class="text-center">{{ data.id_suc }}</td>
+                    <td class="text-center">{{ data.id_rol }}</td>
+                    <td class="text-center">{{ data.fec_nac_usu | date: 'yyyy-MM-dd'}}</td>
+                    <td class="text-center">{{ data.est_usu }}</td>
                     <td class="text-center">
                         <button class="btn btn-outline-primary btn-acciones"><i class="fas fa-pen"></i></button>
                     </td>

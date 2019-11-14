@@ -13,13 +13,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    children: [
-      {
-        path: 'usuarios',
-        component: UsuariosComponent, 
-        outlet: 'usr'
-      }
-    ]
+  },
+  {
+    path: 'usuarios',
+    component: UsuariosComponent,
   }
 ];
 
