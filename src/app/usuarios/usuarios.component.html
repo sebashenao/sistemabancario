@@ -1,40 +1,129 @@
 <div class="row">
-    <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+    <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         <br>
         <h3 class="text-center">ADMIN USUARIOS</h3>
-        <br>
-        <button class="btn btn-outline-success"><i class="fas fa-plus"></i> Crear Usuario</button>
-        <br>
+        <div class="row">
+            <div class="col-12">
+                <div *ngIf="this.bancoService.messageForm != ''" class="alert alert-danger" role="alert">
+                    {{ this.bancoService.messageForm }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10">
+                <input type="text" class="form-control" [(ngModel)]="cedulaUsuario" placeholder="Buscar Cedula...">
+            </div>
+            <div class="col-2">
+                <button
+                    (click)="this.bancoService.setTituloModal('Registro Usuario');this.bancoService.setTituloBoton('Registro');this.usuarioInterface = {};"
+                    class="btn btn-outline-success btn-crud" data-toggle="modal" data-target="#modalAll"><i
+                        class="fas fa-plus"></i> Crear Usuario</button>
+                <button (click)="this.getUsuarios()" class="btn btn-outline-primary btn-crud"><i
+                        class="fas fa-redo-alt"></i></button>
+            </div>
+        </div>
         <br>
         <table class="table">
             <thead>
-                <th class="text-center"># DOCUMENTO</th>
-                <th class="text-center">NOMBRE</th>
-                <th class="text-center">CIUDAD</th>
-                <th class="text-center">DEPARTAMENTO</th>
-                <th class="text-center">DIRECCION</th>
-                <th class="text-center">SUCURSAL</th>
-                <th class="text-center">ROL</th>
-                <th class="text-center">FECHA NACIMIENTO</th>
+                <th># DOCUMENTO</th>
+                <th>NOMBRE</th>
+                <th>CIUDAD</th>
+                <th>SUCURSAL</th>
+                <th>ROL</th>
                 <th class="text-center">ESTADO</th>
                 <th class="text-center">ACCIONES</th>
             </thead>
             <tbody>
                 <tr *ngFor="let data of this.listUsuarios">
-                    <td class="text-center">{{ data.ced_usu }}</td>
-                    <td class="text-center">{{ data.nom_usu }}</td>
-                    <td class="text-center">{{ data.ciu_usu }}</td>
-                    <td class="text-center">{{ data.dep_usu }}</td>
-                    <td class="text-center">{{ data.dir_usu }}</td>
-                    <td class="text-center">{{ data.id_suc }}</td>
-                    <td class="text-center">{{ data.id_rol }}</td>
-                    <td class="text-center">{{ data.fec_nac_usu | date: 'yyyy-MM-dd'}}</td>
-                    <td class="text-center">{{ data.est_usu }}</td>
+                    <td>{{ data.ced_usu }}</td>
+                    <td>{{ data.nom_usu }}</td>
+                    <td>{{ data.ciu_usu }}</td>
+                    <td>{{ data.nom_suc }}</td>
+                    <td>{{ data.nom_rol }}</td>
+                    <td class="text-center" [ngClass]="{ 'true' : data.est_usu == '1', 'false' : data.est_usu == '0' }">
+                        {{ data.est_usu }}</td>
                     <td class="text-center">
-                        <button class="btn btn-outline-primary btn-acciones"><i class="fas fa-pen"></i></button>
+                        <button
+                            (click)="this.bancoService.setTituloModal('Editar Usuario');this.bancoService.setTituloBoton('Editar');this.usuarioInterface = data"
+                            class="btn btn-outline-primary btn-acciones" data-toggle="modal" data-target="#modalAll"><i
+                                class="fas fa-pen"></i></button>
+                        <button (click)="this.bancoService.borrar(data.ced_usu, 'usuarios', 'ced_usu');this.consultar()"
+                            style="margin-left: 5px !important;" class="btn btn-outline-danger btn-acciones"><i
+                                class="fas fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="modal" id="modalAll" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ this.bancoService.getTituloModal() }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-10 col-lg-10 col-xl-10">
+                        <label>Cedula Ciudadania <strong class="obligatorio">*</strong></label>
+                        <input type="text" [(ngModel)]="this.usuarioInterface.ced_usu" class="form-control"
+                            placeholder="Digite Cedula">
+                        <label>Nombre Completo <strong class="obligatorio">*</strong></label>
+                        <input type="text" [(ngModel)]="this.usuarioInterface.nom_usu" class="form-control"
+                            placeholder="Digite Nombre">
+                        <label>Contraseña <strong class="obligatorio">*</strong></label>
+                        <input type="password" [(ngModel)]="this.usuarioInterface.pas_usu" class="form-control"
+                            placeholder="Digite Contraseña">
+                        <label>Direccion</label>
+                        <input type="text" [(ngModel)]="this.usuarioInterface.dir_usu" class="form-control"
+                            placeholder="Digite Direccion">
+                        <label>Departamento</label>
+                        <input type="text" [(ngModel)]="this.usuarioInterface.dep_usu" class="form-control"
+                            placeholder="Digite Departamento">
+                        <label>Ciudad</label>
+                        <input type="text" [(ngModel)]="this.usuarioInterface.ciu_usu" class="form-control"
+                            placeholder="Digite Ciudad">
+                        <label>Fecha Nacimiento</label>
+                        <input type="date" [(ngModel)]="this.usuarioInterface.fec_nac_usu" class="form-control"
+                            placeholder="Digite Fecha Nacimiento">
+                        <label>Sucursal <strong class="obligatorio">*</strong></label>
+                        <select class="form-control" [(ngModel)]="this.usuarioInterface.id_suc">
+                            <option *ngFor="let data of this.bancoService.listSucursales" value="{{data.id_suc}}">
+                                {{data.nom_suc}} </option>
+                        </select>
+                        <label *ngIf="this.bancoService.getTituloBoton() == 'Editar'">Rol <strong
+                                class="obligatorio">*</strong></label>
+                        <select *ngIf="this.bancoService.getTituloBoton() == 'Editar'" class="form-control"
+                            [(ngModel)]="this.usuarioInterface.id_rol">
+                            <option value="2">CLIENTE</option>
+                            <option value="1">ADMIN</option>
+                            <option value="3">CAJERO</option>
+                        </select>
+                        <label *ngIf="this.bancoService.getTituloBoton() == 'Editar'">Estado <strong
+                                class="obligatorio">*</strong></label>
+                        <select *ngIf="this.bancoService.getTituloBoton() == 'Editar'" class="form-control"
+                            [(ngModel)]="this.usuarioInterface.est_usu">
+                            <option value="1">ACTIVO</option>
+                            <option value="0">INACTIVO</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="this.bancoService.getTituloBoton() == 'Registro'" data-dismiss="modal" type="button"
+                    class="btn btn-outline-primary"
+                    (click)="this.bancoService.registrarUsuario(this.usuarioInterface);this.consultar()">{{ this.bancoService.getTituloBoton() }}</button>
+                <button *ngIf="this.bancoService.getTituloBoton() == 'Editar'" data-dismiss="modal" type="button"
+                    class="btn btn-outline-primary"
+                    (click)="this.bancoService.editarUsuario(this.usuarioInterface);this.consultar()">{{ this.bancoService.getTituloBoton() }}</button>
+            </div>
+        </div>
     </div>
 </div>

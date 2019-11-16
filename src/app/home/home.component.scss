@@ -1,5 +1,5 @@
 button {
-    width: 200px !important;
+    width: 150px !important;
     transition: margin-left 1s;
 }
 
@@ -8,11 +8,11 @@ i {
 }
 
 button:hover {
-    margin-left: 160px;
+    margin-left: 100px;
 }
 
 .content-menu {
-    margin-left: -167px;
+    margin-left: -117px;
     width: 200px;
     position: fixed;
     top: 25px;

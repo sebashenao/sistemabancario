@@ -8,5 +8,7 @@ export interface UsuarioInterface {
     fec_nac_usu?: Date,
     id_rol?: number,
     id_suc?: number,
-    est_usu ?: boolean
+    est_usu ?: boolean,
+    nom_rol ?: string,
+    nom_suc ?: string
 }

@@ -16,13 +16,17 @@ export class HomeComponent implements OnInit {
   constructor(public bancoService: BancoService, private route: Router) { }
 
   ngOnInit() {
-    if (this.bancoService.getUsuario() == undefined) {
+    if (this.bancoService.getUsuario() == undefined || !this.bancoService.sesion) {
       this.route.navigate(['/'])
+    } else {
+        this.data = this.bancoService.getUsuario()
+        this.rol = this.data.tip_usuario
+        this.cambiarVista('welcome')
     }
-    else {
-      this.data = this.bancoService.getUsuario()
-      this.rol = this.data.tip_usuario
-    }
+  }
+
+  cambiarVista(vista: string) {
+    this.route.navigate(['home/' + vista])
   }
 
 }

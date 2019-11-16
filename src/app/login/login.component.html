@@ -62,13 +62,13 @@
                             placeholder="Digite Direccion">
                         <label>Departamento</label>
                         <input type="text" [(ngModel)]="this.usuarioInterface.dep_usu" class="form-control"
-                            placeholder="Digite Direccion">
+                            placeholder="Digite Departamento">
                         <label>Ciudad</label>
                         <input type="text" [(ngModel)]="this.usuarioInterface.ciu_usu" class="form-control"
-                            placeholder="Digite Direccion">
+                            placeholder="Digite Ciudad">
                         <label>Fecha Nacimiento</label>
                         <input type="date" [(ngModel)]="this.usuarioInterface.fec_nac_usu" class="form-control"
-                            placeholder="Digite Direccion">
+                            placeholder="Digite Fecha Nacimiento">
                         <label>Sucursal <strong class="obligatorio">*</strong></label>
                         <select class="form-control" [(ngModel)]="this.usuarioInterface.id_suc">
                             <option *ngFor="let data of this.bancoService.listSucursales" value="{{data.id_suc}}">

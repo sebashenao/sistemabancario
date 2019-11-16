@@ -12,6 +12,7 @@ import { BancoService } from './banco.service';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HomeComponent } from './home/home.component';
 import { LoaderComponent } from './loader/loader.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoaderComponent } from './loader/loader.component';
     LoginComponent,
     UsuariosComponent,
     HomeComponent,
-    LoaderComponent
+    LoaderComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,10 @@ export class BancoService {
   messageForm: string = ''
   textLoader: string = ''
   rol: string = ''
+  sesion: boolean = false
   usuario: UsuarioInterface
+  tituloModal: string = ''
+  tituloBoton: string = ''
 
   constructor(private http: HttpClient) { }
 
@@ -48,6 +51,22 @@ export class BancoService {
     return this.textLoader
   }
 
+  setTituloModal(tituloModal: string) {
+    this.tituloModal = tituloModal
+  }
+
+  getTituloModal() {
+    return this.tituloModal
+  }
+
+  setTituloBoton(tituloBoton: string) {
+    this.tituloBoton = tituloBoton
+  }
+
+  getTituloBoton() {
+    return this.tituloBoton
+  }
+
   setUsuario(usuario: UsuarioInterface) {
     this.usuario = usuario
   }
@@ -68,11 +87,41 @@ export class BancoService {
     return this.http.post<UsuarioInterface>(`${environment.url}/registrarUsuario`, nuevoUsuario)
       .subscribe((result) => {
         if (!isNullOrUndefined(result)) {
-          setTimeout(() => {
-            let data: any = result
-            this.messageForm = data.mensaje
-            $('.loading').hide()
-          }, 1000);
+          let data: any = result
+          this.messageForm = data.mensaje
+          $('.loading').hide()
+        }
+      })
+  }
+
+  editarUsuario(usuario: UsuarioInterface) {
+    this.messageForm = ''
+    this.setTextLoader('Editando Usuario...')
+    $('.loading').show()
+    return this.http.post<UsuarioInterface>(`${environment.url}/editarUsuario`, usuario)
+      .subscribe((result) => {
+        if (!isNullOrUndefined(result)) {
+          let data: any = result
+          this.messageForm = data.mensaje
+          $('.loading').hide()
+        }
+      })
+  }
+
+  borrar(dato, tabla, campo) {
+    this.messageForm = ''
+
+    let borrar = {
+      dato: dato,
+      tabla: tabla,
+      campo: campo
+    }
+
+    return this.http.post(`${environment.url}/borrar`, borrar)
+      .subscribe((result) => {
+        if (!isNullOrUndefined(result)) {
+          let data: any = result
+          this.messageForm = data.mensaje
         }
       })
   }

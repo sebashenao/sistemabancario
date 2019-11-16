@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             $('.loading').hide()
             this.bancoService.setUsuario(data.data)
+            this.bancoService.sesion = true
             this.router.navigate(['/home'])
           }, 1000)
         }

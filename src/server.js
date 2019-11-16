@@ -97,5 +97,14 @@ app.post('/registro', (req, res, next) => {
     })
 })
 
+app.post('/borrar', (req, res, next) => {
+    con.query(`DELETE from ${req.body.tabla} WHERE ${req.body.campo} = ${req.body.dato}`, (result, err) => {
+        let response = {
+            estado: '',
+            mensaje: ''
+        }
+    })
+})
+
 app.listen(port, ipAddress)
 console.log('Servidor : ' + ipAddress + ':' + port)
