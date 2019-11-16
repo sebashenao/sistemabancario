@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     $('.content-menu').hide()
     this.bancoService.getSucursales()
+    this.usuarioInterface = {};
+    this.usuarioInterface.id_suc = 1
   }
 
   login() {

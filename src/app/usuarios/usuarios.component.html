@@ -12,19 +12,19 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-10">
                 <input type="text" class="form-control" [(ngModel)]="cedulaUsuario" placeholder="Buscar Cedula...">
-            </div>
-            <div class="col-2">
-                <button
-                    (click)="this.bancoService.setTituloModal('Registro Usuario');this.bancoService.setTituloBoton('Registro');this.usuarioInterface = {};"
-                    class="btn btn-outline-success btn-crud" data-toggle="modal" data-target="#modalAll"><i
-                        class="fas fa-plus"></i> Crear Usuario</button>
-                <button (click)="this.getUsuarios()" class="btn btn-outline-primary btn-crud"><i
-                        class="fas fa-redo-alt"></i></button>
-            </div>
-        </div>
+            </div> -->
+        <!-- <div class="col-2"> -->
+        <button
+            (click)="this.bancoService.setTituloModal('Registro Usuario');this.bancoService.setTituloBoton('Registro');this.limpiar()"
+            class="btn btn-outline-success btn-crud" data-toggle="modal" data-target="#modalAll"><i
+                class="fas fa-plus"></i> Crear Usuario</button>
+        <button (click)="this.getUsuarios()" class="btn btn-outline-primary btn-crud"><i
+                class="fas fa-redo-alt"></i></button>
+        <!-- </div>
+        </div> -->
         <br>
         <table class="table">
             <thead>
@@ -73,7 +73,11 @@
                 <div class="row">
                     <div class="col-md-10 col-lg-10 col-xl-10">
                         <label>Cedula Ciudadania <strong class="obligatorio">*</strong></label>
-                        <input type="text" [(ngModel)]="this.usuarioInterface.ced_usu" class="form-control"
+                        <input *ngIf="this.bancoService.getTituloBoton() == 'Editar'" type="text"
+                            [(ngModel)]="this.usuarioInterface.ced_usu" class="form-control" placeholder="Digite Cedula"
+                            disabled>
+                        <input *ngIf="this.bancoService.getTituloBoton() == 'Registro'" type="text"
+                            [(ngModel)]="this.usuarioInterface.ced_usu" class="form-control"
                             placeholder="Digite Cedula">
                         <label>Nombre Completo <strong class="obligatorio">*</strong></label>
                         <input type="text" [(ngModel)]="this.usuarioInterface.nom_usu" class="form-control"

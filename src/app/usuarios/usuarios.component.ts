@@ -31,11 +31,14 @@ export class UsuariosComponent implements OnInit {
   }
 
   consultar() {
-    this.bancoService.setTextLoader('Eliminando Usuario...')
-    $('.loading').show()
     setTimeout(() => {
       this.getUsuarios()
-    }, 2000);
+    }, 1000);
+  }
+
+  limpiar() {
+    this.usuarioInterface = {};
+    this.usuarioInterface.id_suc = 1
   }
 
 }

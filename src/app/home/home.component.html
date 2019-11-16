@@ -1,20 +1,20 @@
 <div *ngIf="this.rol != null && this.bancoService.sesion" class="content-menu">
-    <button (click)="this.cambiarVista('usuarios')" *ngIf="this.rol == 1" class="btn btn-outline-primary btn-block">Usuarios <i
-            class="fas fa-user-friends"></i></button>
-    <button *ngIf="this.rol == 1" class="btn btn-outline-secondary btn-block">Roles <i
-            class="fas fa-user-shield"></i></button>
-    <button *ngIf="this.rol == 1" class="btn btn-outline-success btn-block">Sucursales <i
-            class="fas fa-hotel"></i></button>
-    <button *ngIf="this.rol == 1" class="btn btn-outline-danger btn-block">Transacciones <i
-            class="fas fa-receipt"></i></button>
-    <button *ngIf="this.rol == 2" class="btn btn-outline-danger btn-block">Transacciones <i
-            class="fas fa-receipt"></i></button>
-    <button *ngIf="this.rol == 2" class="btn btn-outline-warning btn-block">Cuenta <i
-            class="fas fa-credit-card"></i></button>
-    <button *ngIf="this.rol == 1" class="btn btn-outline-info btn-block">Tipo Cuenta <i
-            class="fas fa-user-check"></i></button>
-    <button (click)="this.cambiarVista('welcome')" class="btn btn-outline-dark btn-block">Inicio <i class="fas fa-home"></i></button>
-    <button [routerLink]="['/']" class="btn btn-outline-dark btn-block" (click)="this.bancoService.sesion = false">Cerrar Sesion <i class="fas fa-power-off"></i></button>
+        <button (click)="this.cambiarVista('usuarios')" *ngIf="this.rol == 1"
+                class="btn btn-outline-primary btn-block">Usuarios <i class="fas fa-user-friends"></i></button>
+        <button (click)="this.cambiarVista('roles')" *ngIf="this.rol == 1"
+                class="btn btn-outline-secondary btn-block">Roles <i class="fas fa-user-shield"></i></button>
+        <button (click)="this.cambiarVista('sucursales')" *ngIf="this.rol == 1"
+                class="btn btn-outline-success btn-block">Sucursales <i class="fas fa-hotel"></i></button>
+        <button *ngIf="this.rol == 1" class="btn btn-outline-danger btn-block">Transacciones <i
+                        class="fas fa-receipt"></i></button>
+        <button *ngIf="this.rol == 1" class="btn btn-outline-warning btn-block">Cuentas <i
+                        class="fas fa-credit-card"></i></button>
+        <button (click)="this.cambiarVista('tipo_cuenta')" *ngIf="this.rol == 1"
+                class="btn btn-outline-info btn-block">Tipo Cuenta <i class="fas fa-user-check"></i></button>
+        <button (click)="this.cambiarVista('welcome')" class="btn btn-outline-dark btn-block">Inicio <i
+                        class="fas fa-home"></i></button>
+        <button [routerLink]="['/']" class="btn btn-outline-dark btn-block"
+                (click)="this.bancoService.sesion = false">Cerrar Sesion <i class="fas fa-power-off"></i></button>
 </div>
 
 <router-outlet></router-outlet>

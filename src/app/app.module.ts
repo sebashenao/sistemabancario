@@ -13,6 +13,9 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HomeComponent } from './home/home.component';
 import { LoaderComponent } from './loader/loader.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { RolesComponent } from './roles/roles.component';
+import { SucursalesComponent } from './sucursales/sucursales.component';
+import { TipoCuentasComponent } from './tipo-cuentas/tipo-cuentas.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
     UsuariosComponent,
     HomeComponent,
     LoaderComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    RolesComponent,
+    SucursalesComponent,
+    TipoCuentasComponent
   ],
   imports: [
     BrowserModule,

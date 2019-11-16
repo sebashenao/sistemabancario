@@ -1,0 +1,95 @@
+<div class="row">
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+            <br>
+            <h3 class="text-center">ADMIN TIPOS CUENTA</h3>
+            <div class="row">
+                <div class="col-12">
+                    <div *ngIf="this.bancoService.messageForm != ''" class="alert alert-danger" role="alert">
+                        {{ this.bancoService.messageForm }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
+                        <div class="col-10">
+                            <input type="text" class="form-control" [(ngModel)]="cedulaRol" placeholder="Buscar Cedula...">
+                        </div> -->
+            <!-- <div class="col-2"> -->
+            <button
+                (click)="this.bancoService.setTituloModal('Registro Tipo Cuenta');this.bancoService.setTituloBoton('Registro');this.limpiar()"
+                class="btn btn-outline-success btn-crud" data-toggle="modal" data-target="#modalAll"><i
+                    class="fas fa-plus"></i> Crear Tipo Cuenta</button>
+            <button (click)="this.getTipoCuenta()" class="btn btn-outline-primary btn-crud"><i
+                    class="fas fa-redo-alt"></i></button>
+            <!-- </div>
+                    </div> -->
+            <br>
+            <table class="table">
+                <thead>
+                    <th>ID</th>
+                    <th>DESCRIPCION</th>
+                    <th class="text-center">ESTADO</th>
+                    <th class="text-center">ACCIONES</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of this.listTipoCuentas">
+                        <td>{{ data.id_tip }}</td>
+                        <td>{{ data.des_tip }}</td>
+                        <td class="text-center" [ngClass]="{ 'true' : data.est_tip == '1', 'false' : data.est_tip == '0' }">
+                            {{ data.est_tip }}</td>
+                        <td class="text-center">
+                            <button
+                                (click)="this.bancoService.setTituloModal('Editar Tipo Cuenta');this.bancoService.setTituloBoton('Editar');this.tipoCuentaInterface = data"
+                                class="btn btn-outline-primary btn-acciones" data-toggle="modal" data-target="#modalAll"><i
+                                    class="fas fa-pen"></i></button>
+                            <button (click)="this.bancoService.borrar(data.id_tip, 'tipo_cuentas', 'id_tip');this.consultar()"
+                                style="margin-left: 5px !important;" class="btn btn-outline-danger btn-acciones"><i
+                                    class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="modal" id="modalAll" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ this.bancoService.getTituloModal() }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10 col-lg-10 col-xl-10">
+                            <label *ngIf="this.bancoService.getTituloBoton() == 'Editar'">ID <strong
+                                    class="obligatorio">*</strong></label>
+                            <input *ngIf="this.bancoService.getTituloBoton() == 'Editar'" type="text"
+                                [(ngModel)]="this.tipoCuentaInterface.id_tip" class="form-control" placeholder="Digite Cedula"
+                                disabled>
+                            <label>Nombre <strong class="obligatorio">*</strong></label>
+                            <input type="text" [(ngModel)]="this.tipoCuentaInterface.des_tip" class="form-control"
+                                placeholder="Digite Nombre">
+                            <label>Estado <strong class="obligatorio">*</strong></label>
+                            <select class="form-control" [(ngModel)]="this.tipoCuentaInterface.est_tip">
+                                <option value="1">ACTIVO</option>
+                                <option value="0">INACTIVO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button *ngIf="this.bancoService.getTituloBoton() == 'Registro'" data-dismiss="modal" type="button"
+                        class="btn btn-outline-primary"
+                        (click)="this.bancoService.registrarTipoCuenta(this.tipoCuentaInterface);this.consultar()">{{ this.bancoService.getTituloBoton() }}</button>
+                    <button *ngIf="this.bancoService.getTituloBoton() == 'Editar'" data-dismiss="modal" type="button"
+                        class="btn btn-outline-primary"
+                        (click)="this.bancoService.editarTipoCuenta(this.tipoCuentaInterface);this.consultar()">{{ this.bancoService.getTituloBoton() }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
