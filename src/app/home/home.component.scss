@@ -5,6 +5,7 @@ button {
 
 i {
     float: right !important;
+    font-size: 1rem !important;
 }
 
 button:hover {
@@ -12,10 +13,10 @@ button:hover {
 }
 
 .content-menu {
-    margin-left: -117px;
+    margin-left: -114px;
     width: 200px;
     position: fixed;
     top: 25px;
-    top: 83px;
+    top: 182px;
     z-index: 1000;
 }
