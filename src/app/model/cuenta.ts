@@ -1,8 +1,9 @@
 export interface CuentaInterface {
-    id_cue ?: number, 
     num_cue ?: string, 
     pas_cue ?: string, 
-    id_usu ?: string, 
-    id_tip ?: number
+    ced_usu ?: string, 
+    nom_usu ?: string, 
+    id_tip ?: number,
+    des_tip ?: string,
     est_cue ?: boolean
 }

@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+        <br>
+        <h3 class="text-center">ADMIN TRANSACCIONES</h3>
+        <div class="row">
+            <div class="col-12">
+                <div *ngIf="this.bancoService.messageForm != ''" class="alert alert-danger" role="alert">
+                    {{ this.bancoService.messageForm }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+                    <div class="col-10">
+                        <input type="text" class="form-control" [(ngModel)]="cedulaTransaccion" placeholder="Buscar Cedula...">
+                    </div> -->
+        <!-- <div class="col-2"> -->
+        <!-- <button
+                (click)="this.bancoService.setTituloModal('Registro Transaccion');this.bancoService.setTituloBoton('Registro');this.limpiar()"
+                class="btn btn-outline-success btn-crud" data-toggle="modal" data-target="#modalAll"><i
+                    class="fas fa-plus"></i> Crear Transaccion</button> -->
+        <button (click)="this.getTransacciones()" class="btn btn-outline-primary btn-crud"><i
+                class="fas fa-redo-alt"></i></button>
+        <!-- </div>
+                </div> -->
+        <br>
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th># CUENTA</th>
+                <th>FECHA TRANSACCION</th>
+                <th>NOMBRE USUARIO</th>
+                <th>VALOR</th>
+                <th class="text-center">ESTADO</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of this.listTransacciones">
+                    <td>{{ data.id_tra }}</td>
+                    <td>{{ data.num_cue }}</td>
+                    <td>{{ data.fec_tra | date : 'yyyy-MM-dd' }}</td>
+                    <td>{{ data.nom_usu }}</td>
+                    <td>{{ data.valor | currency }}</td>
+                    <td class="text-center" [ngClass]="{ 'true' : data.est_tra == '1', 'false' : data.est_tra == '0' }">
+                        {{ data.est_tra }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

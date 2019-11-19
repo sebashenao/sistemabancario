@@ -8,6 +8,9 @@ import * as $ from "jquery"
 import { RolInterface } from './model/rol';
 import { SucursalInterface } from './model/sucursal';
 import { TipoCuentaInterface } from './model/tipo_cuenta';
+import { CuentaInterface } from './model/cuenta';
+import { CuentaUsuarioComponent } from './cuenta-usuario/cuenta-usuario.component';
+import { TransaccionInterface } from './model/transaccion';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +19,13 @@ export class BancoService {
 
   listUsuarios: any = []
   listSucursales: any = []
+  listUsuariosCuentas: any = []
+  listTransacciones: any = []
+  listSucursalesUsuarios: any = []
   messageForm: string = ''
   textLoader: string = ''
   rol: string = ''
+  cuenta: CuentaInterface = {}
   sesion: boolean = false
   usuario: UsuarioInterface
   tituloModal: string = ''
@@ -30,6 +37,13 @@ export class BancoService {
     return this.http.get(`${environment.url}/getSucursales`)
       .subscribe((result) => {
         this.listSucursales = result
+      })
+  }
+
+  getUsuariosForCuentas() {
+    return this.http.get(`${environment.url}/getUsuariosForCuentas`)
+      .subscribe((result) => {
+        this.listUsuariosCuentas = result
       })
   }
 
@@ -63,6 +77,14 @@ export class BancoService {
 
   getTituloBoton() {
     return this.tituloBoton
+  }
+
+  setCuenta(cuenta: CuentaInterface) {
+    this.cuenta = cuenta
+  }
+
+  getCuenta() {
+    return this.cuenta
   }
 
   setUsuario(usuario: UsuarioInterface) {
@@ -149,6 +171,16 @@ export class BancoService {
     return this.http.get(`${environment.url}/getSucursales`)
   }
 
+  getSucursalesUsuarios(id) {
+    this.setTextLoader('Consultando Datos Sucursal...')
+    $('.loading').show()
+    return this.http.get(`${environment.url}/getSucursalesUsuarios/${id}`)
+    .subscribe((data) => {
+      this.listSucursalesUsuarios = data
+      $('.loading').hide()
+    })
+  }
+
   registrarSucursal(obj: SucursalInterface) {
     this.messageForm = ''
     this.setTextLoader('Registrando Sucursal...')
@@ -201,6 +233,66 @@ export class BancoService {
     this.setTextLoader('Editando Sucursal...')
     $('.loading').show()
     return this.http.post<TipoCuentaInterface>(`${environment.url}/editarTipoCuenta`, obj)
+      .subscribe((result) => {
+        if (!isNullOrUndefined(result)) {
+          let data: any = result
+          this.messageForm = data.mensaje
+          $('.loading').hide()
+        }
+      })
+  }
+
+  // CUENTA
+  getCuentasAdmin() {
+    return this.http.get(`${environment.url}/getCuentas`)
+  }
+
+  getCuentasUsuario(ced: string) {
+    return this.http.get(`${environment.url}/getCuentasPorUsuario/${ced}`)
+  }
+
+  registrarCuenta(obj: CuentaInterface) {
+    this.messageForm = ''
+    this.setTextLoader('Registrando Cuenta...')
+    $('.loading').show()
+    return this.http.post<CuentaInterface>(`${environment.url}/registrarCuenta`, obj)
+      .subscribe((result) => {
+        if (!isNullOrUndefined(result)) {
+          let data: any = result
+          this.messageForm = data.mensaje
+          $('.loading').hide()
+        }
+      })
+  }
+
+  editarCuenta(obj: CuentaInterface) {
+    this.messageForm = ''
+    this.setTextLoader('Editando Cuenta...')
+    $('.loading').show()
+    return this.http.post<CuentaInterface>(`${environment.url}/editarCuenta`, obj)
+      .subscribe((result) => {
+        if (!isNullOrUndefined(result)) {
+          let data: any = result
+          this.messageForm = data.mensaje
+          $('.loading').hide()
+        }
+      })
+  }
+
+  // TRANSACCIONES ADMIN
+  getTransacciones() {
+    return this.http.get(`${environment.url}/getTransacciones`)
+  }
+
+  getTransaccionesFechas(fec_ini, fec_fin, num) {
+    return this.http.get(`${environment.url}/getTransaccionesFecha/${fec_ini}/${fec_fin}/${num}`)
+  }
+
+  registrarTransaccion(obj: TransaccionInterface) {
+    this.messageForm = ''
+    this.setTextLoader('Registrando Transaccion...')
+    $('.loading').show()
+    return this.http.post<TransaccionInterface>(`${environment.url}/registrarTransaccion`, obj)
       .subscribe((result) => {
         if (!isNullOrUndefined(result)) {
           let data: any = result

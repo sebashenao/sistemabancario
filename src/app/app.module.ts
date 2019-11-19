@@ -16,6 +16,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { RolesComponent } from './roles/roles.component';
 import { SucursalesComponent } from './sucursales/sucursales.component';
 import { TipoCuentasComponent } from './tipo-cuentas/tipo-cuentas.component';
+import { CuentasComponent } from './cuentas/cuentas.component';
+import { TransaccionesComponent } from './transacciones/transacciones.component';
+import { CuentaUsuarioComponent } from './cuenta-usuario/cuenta-usuario.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { SucursalesUsuarioComponent } from './sucursales-usuario/sucursales-usuario.component';
 
 @NgModule({
   declarations: [
@@ -28,15 +33,20 @@ import { TipoCuentasComponent } from './tipo-cuentas/tipo-cuentas.component';
     WelcomeComponent,
     RolesComponent,
     SucursalesComponent,
-    TipoCuentasComponent
+    TipoCuentasComponent,
+    CuentasComponent,
+    TransaccionesComponent,
+    CuentaUsuarioComponent,
+    SucursalesUsuarioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    GoogleChartsModule.forRoot(),
   ],
-  providers: [BancoService],
+  providers: [BancoService, CuentaUsuarioComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

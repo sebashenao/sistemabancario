@@ -1,0 +1,115 @@
+<div class="row">
+    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+        <br>
+        <h3 class="text-center">ADMIN CUENTAS</h3>
+        <div class="row">
+            <div class="col-12">
+                <div *ngIf="this.bancoService.messageForm != ''" class="alert alert-danger" role="alert">
+                    {{ this.bancoService.messageForm }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+                    <div class="col-10">
+                        <input type="text" class="form-control" [(ngModel)]="cedulaRol" placeholder="Buscar Cedula...">
+                    </div> -->
+        <!-- <div class="col-2"> -->
+        <button
+            (click)="this.bancoService.setTituloModal('Registro Cuentas');this.bancoService.setTituloBoton('Registro');this.limpiar()"
+            class="btn btn-outline-success btn-crud" data-toggle="modal" data-target="#modalAll"><i
+                class="fas fa-plus"></i> Crear Cuentas</button>
+        <button (click)="this.getCuentasAdmin()" class="btn btn-outline-primary btn-crud"><i
+                class="fas fa-redo-alt"></i></button>
+        <!-- </div>
+                </div> -->
+        <br>
+        <table class="table">
+            <thead>
+                <th># CUENTA</th>
+                <th>NOMBRE USUARIO</th>
+                <th>TIPO</th>
+                <th class="text-center">ESTADO</th>
+                <th class="text-center">ACCIONES</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of this.listCuentas">
+                    <td>{{ data.num_cue }}</td>
+                    <td>{{ data.nom_usu }}</td>
+                    <td>{{ data.des_tip }}</td>
+                    <td class="text-center" [ngClass]="{ 'true' : data.est_cue == '1', 'false' : data.est_cue == '0' }">
+                        {{ data.est_cue }}</td>
+                    <td class="text-center">
+                        <button
+                            (click)="this.bancoService.setTituloModal('Editar Cuentas');this.bancoService.setTituloBoton('Editar');this.cuentaInterface = data"
+                            class="btn btn-outline-primary btn-acciones" data-toggle="modal" data-target="#modalAll"><i
+                                class="fas fa-pen"></i></button>
+                        <!-- <button (click)="this.bancoService.borrar(data.num_cue, 'cuentas', 'id_suc');this.consultar()"
+                            style="margin-left: 5px !important;" class="btn btn-outline-danger btn-acciones"><i
+                                class="fas fa-trash"></i></button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal" id="modalAll" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ this.bancoService.getTituloModal() }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-10 col-lg-10 col-xl-10">
+                        <label># Cuenta <strong class="obligatorio">*</strong></label>
+                        <input *ngIf="this.bancoService.getTituloBoton() == 'Editar'" type="text"
+                            [(ngModel)]="this.cuentaInterface.num_cue" class="form-control"
+                            placeholder="Digite # Cuenta" disabled>
+                        <input *ngIf="this.bancoService.getTituloBoton() == 'Registro'" type="text"
+                            [(ngModel)]="this.cuentaInterface.num_cue" class="form-control"
+                            placeholder="Digite # Cuenta">
+                        <label>Usuario <strong class="obligatorio">*</strong></label>
+                        <select *ngIf="this.bancoService.getTituloBoton() == 'Registro'" class="form-control"
+                            [(ngModel)]="this.cuentaInterface.ced_usu">
+                            <option *ngFor="let data of this.bancoService.listUsuariosCuentas"
+                                value="{{ data.ced_usu }}">
+                                {{ data.nom_usu }} </option>
+                        </select>
+                        <label *ngIf="this.bancoService.getTituloBoton() == 'Registro'">Contraseña <strong
+                                class="obligatorio">*</strong></label>
+                        <input *ngIf="this.bancoService.getTituloBoton() == 'Registro'" type="password"
+                            [(ngModel)]="this.cuentaInterface.pas_cue" class="form-control"
+                            placeholder="Digite Contraseña 4 Digitos">
+                        <input *ngIf="this.bancoService.getTituloBoton() == 'Editar'" type="text"
+                            [(ngModel)]="this.cuentaInterface.ced_usu" class="form-control" disabled>
+                        <label>Tipo Cuenta <strong class="obligatorio">*</strong></label>
+                        <select class="form-control" [(ngModel)]="this.cuentaInterface.id_tip">
+                            <option *ngFor="let data of this.listTipoCuenta" value="{{ data.id_tip }}">
+                                {{ data.des_tip }} </option>
+                        </select>
+                        <label>Estado <strong class="obligatorio">*</strong></label>
+                        <select class="form-control" [(ngModel)]="this.cuentaInterface.est_cue">
+                            <option value="1">ACTIVA</option>
+                            <option value="0">INACTIVA</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="this.bancoService.getTituloBoton() == 'Registro'" data-dismiss="modal" type="button"
+                    class="btn btn-outline-primary"
+                    (click)="this.bancoService.registrarCuenta(this.cuentaInterface);this.consultar()">{{ this.bancoService.getTituloBoton() }}</button>
+                <button *ngIf="this.bancoService.getTituloBoton() == 'Editar'" data-dismiss="modal" type="button"
+                    class="btn btn-outline-primary"
+                    (click)="this.bancoService.editarCuenta(this.cuentaInterface);this.consultar()">{{ this.bancoService.getTituloBoton() }}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,6 +7,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { RolesComponent } from './roles/roles.component';
 import { SucursalesComponent } from './sucursales/sucursales.component';
 import { TipoCuentasComponent } from './tipo-cuentas/tipo-cuentas.component';
+import { TransaccionesComponent } from './transacciones/transacciones.component';
+import { CuentasComponent } from './cuentas/cuentas.component';
+import { CuentaUsuarioComponent } from './cuenta-usuario/cuenta-usuario.component';
+import { SucursalesUsuarioComponent } from './sucursales-usuario/sucursales-usuario.component';
 
 
 const routes: Routes = [
@@ -37,6 +41,22 @@ const routes: Routes = [
       {
         path: 'tipo_cuenta',
         component: TipoCuentasComponent
+      },
+      {
+        path: 'cuentas',
+        component: CuentasComponent
+      },
+      {
+        path: 'transacciones',
+        component: TransaccionesComponent
+      },
+      {
+        path: 'cuenta_usuario',
+        component: CuentaUsuarioComponent
+      },
+      {
+        path: 'sucursal_filtro',
+        component: SucursalesUsuarioComponent
       }
     ]
   }
