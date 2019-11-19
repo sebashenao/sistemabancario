@@ -334,7 +334,7 @@ app.get('/getTransaccionesFecha/:fec_ini/:fec_fin/:num', (req, res) => {
 })
 
 app.post('/registrarTransaccion', (req, res, next) => {    
-    con.query(`INSERT INTO transacciones VALUES(DEFAULT,'${req.body.num_cue}','${new Date()}','${req.body.valor}',1)`,
+    con.query(`INSERT INTO transacciones VALUES(DEFAULT,'${req.body.num_cue}','2019-11-19','${req.body.valor}',1)`,
         (err, result) => {
             if (result) {
                 response.estado = 200
